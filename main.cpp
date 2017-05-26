@@ -131,7 +131,7 @@ void nbalanced(int row,int col) {
 }
 
 void dfs_ebalanced(int num,int sum) {
-  if (sum>balanced_color)
+  if (sum>=balanced_color)
       return;
   if (num==balanced_number) {
       for (int i1=0;i1<rows-balanced_row;i1++)
@@ -358,8 +358,11 @@ int main(int argc, char *argv[])
         cout << "Invalid command\n";
       }
       else if (command.type==c_back) {
-        s.releaseVar(~assump[assump.size()-1]);
-        assump.pop();
+        if(assump.size()>=1){
+          s.releaseVar(~assump[assump.size()-1]);
+          assump.pop();
+        }
+        else cout<< "No instructions\n";
       }
       else if (command.type==c_rule) {
         Minisat::Lit l=Minisat::mkLit(s.newVar());
