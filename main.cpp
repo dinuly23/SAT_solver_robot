@@ -72,8 +72,10 @@ void balanced(int row,int col) {
   balanced_number=col*row;
   balanced_column=col;
   balanced_row=row;
-  if (balanced_number%colors)
+  if (balanced_number%colors){
+    assump.pop();
     throw "cannot equal colors in rule balanced";
+  }
   balanced_color=balanced_number/colors;
   v.resize(balanced_number);
   dfs(0,0);
@@ -161,8 +163,10 @@ void ebalanced() {
     balanced_column=max(balanced_column,command.rule.v[i].y);
     balanced_row=max(balanced_row,command.rule.v[i].x);
   }
-  if (balanced_number%colors)
+  if (balanced_number%colors){
+    assump.pop();
     throw "cannot equal colors in rule balanced";
+  }
   balanced_color=balanced_number/colors;
   v.resize(balanced_number);
   dfs_ebalanced(0,0);
